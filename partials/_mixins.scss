@@ -1,0 +1,92 @@
+// @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic);
+// @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic);
+
+@import 'include-media';
+
+//COLORS
+$delGreen: #86bc25;
+$delGreen2: #67bd00;
+$delLightGreen: #a2b721;
+$darkGreen: #6e7d16;
+$delTurquoise: #29a580;
+$delBlue: #00a3e0;
+$darkGrey: #181818;
+$lightGrey: #c3c3c3;
+$lightGrey2: #959595;
+$lightGrey3: #d2d2d2;
+
+//FONTS
+$h1Font: #{'min(max(#{30px}, #{10vw}), #{63px})'};
+$h2Font: #{'min(max(#{27px}, #{6vw}), #{48px})'};
+$h3Font: #{'min(max(#{20px}, #{4vw}), #{25px})'};
+$h3FontSpecial: #{'min(max(#{23px}, #{5vw}), #{32px})'};
+$eventTitle: #{'min(max(#{23px}, #{5vw}), #{29px})'};
+$pFont: #{'min(max(#{16px}, #{1vw}), #{18px})'};
+$pFontLarge: #{'min(max(#{18px}, #{2vw}), #{20px})'};
+
+// MEDIA QUERIES
+$phone: '<del-phone';
+$tablet2: '<del-tablet';
+$tablet: '<tablet-landscape';
+
+@mixin phone {
+  @include media($phone) {
+    @content;
+  }
+}
+@mixin tablet {
+  @include media($tablet) {
+    @content;
+  }
+}
+@mixin tablet2 {
+  @include media($tablet2) {
+    @content;
+  }
+}
+
+@mixin green-font {
+  color: $delGreen;
+  font-weight: bold;
+}
+@mixin dark-green-font {
+  color: $darkGreen;
+  font-weight: bold;
+}
+@mixin blue-font {
+  color: $delBlue;
+  font-weight: bold;
+}
+
+@mixin green-bg {
+  background-color: $delGreen;
+}
+
+//SOME KEYFRAMES FOR ARROWS
+@mixin arrow-keyframes {
+  @keyframes arrow-small-move-2 {
+    0% {
+      transform: rotate(-45deg) translateX(35px) translateY(20px);
+    }
+    50% {
+      transform: rotate(-45deg) translateX(40px) translateY(35px);
+    }
+    100% {
+      transform: rotate(-45deg) translateX(35px) translateY(20px);
+    }
+  }
+  @keyframes arrow-big-move {
+    0% {
+      transform: rotate(-45deg) scale(0.7) translateX(32px) translateY(-17px);
+    }
+    50% {
+      transform: rotate(-45deg) scale(0.7) translateX(51px) translateY(0px);
+    }
+    100% {
+      transform: rotate(-45deg) scale(0.7) translateX(32px) translateY(-17px);
+    }
+  }
+}
+
+@import 'site-setup';

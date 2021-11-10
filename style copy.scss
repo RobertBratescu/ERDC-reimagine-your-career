@@ -1,0 +1,645 @@
+// @use '/partials/site-setup';
+@import "partials/mixins";
+@import "partials/site-setup";
+
+body {
+  background-color: black;
+}
+#click-to-copy{
+  font-size: .8rem;
+  font-style: italic;
+  padding-left: 10px;
+  display: inline-block;
+  &:hover{
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  &.clicked{
+    color:white
+  }
+}
+html {
+  scroll-behavior: smooth;
+  font-size: 18px;
+  @include phone {
+    font-size: 16px;
+  }
+}
+
+.radc-2021-wrapper {
+  //   min-height: 3000px;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  font-family: "Open Sans", sans;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.4;
+  span,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a {
+    &.green {
+      color: $delGreen;
+    }
+    &.blue {
+      color: $delBlue;
+    }
+    &.nowrap {
+      white-space: nowrap;
+      @include tablet {
+        white-space: initial;
+      }
+    }
+    &.bold {
+      font-weight: bold;
+    }
+    &.big {
+      font-size: 1.12em;
+    }
+  }
+  h2 {
+    margin: 0;
+  }
+  div {
+    &.green {
+      background-color: $delGreen;
+    }
+    &.blue {
+      background-color: $delBlue;
+    }
+  }
+  background-color: black;
+  .wrap-container {
+    max-width: 1100px;
+    margin: 0 auto;
+
+    //HEADER IMAGE
+    .header-section {
+      padding: 20px 0;
+      padding-bottom: 100px;
+      @include tablet {
+        padding-left: 1em;
+        padding-right: 1em;
+      }
+      @include phone {
+        padding-bottom: 50px;
+      }
+      .subheader {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        align-items: flex-end;
+        @include tablet2 {
+          flex-flow: column nowrap;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+        h2 {
+          color: white;
+          font-size: 1.4rem;
+          font-weight: 300;
+        }
+        &.bottom {
+          justify-content: space-between;
+          h2 {
+            font-size: 2rem;
+            line-height: 1.3;
+            @include tablet2 {
+            }
+          }
+        }
+      }
+      .header-image {
+        width: 100%;
+        max-width: 600px;
+        display: block;
+        margin: 0 auto;
+        @include tablet2 {
+          padding: 2em 0;
+        }
+      }
+    }
+    //INTRO SECTION
+    .intro-section {
+      position: relative;
+      width: 100%;
+      #miss-out {
+        position: absolute;
+        display: block;
+        z-index: 1;
+        top: -85px;
+        left: 50%;
+        width: 130px;
+        transform: translateX(-50%);
+        @include phone {
+          display: none;
+        }
+      }
+      .intro-section-wrapper {
+        color: white;
+
+        min-height: 200px;
+
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        @include phone {
+          flex-flow: column nowrap;
+          justify-content: flex-start;
+        }
+
+        .intro-section-job {
+          clip-path: polygon(0 0, 100% 0, 100% 90%, 0 90%);
+          flex: 2;
+
+          background-color: $lightGrey;
+          padding: 3em;
+          padding-bottom: 5em;
+          height: 98%;
+          @include phone {
+            clip-path: none;
+            padding: 2em;
+            text-align: center;
+          }
+          .job-text {
+            font-size: 1.56rem;
+            width: 90%;
+            @include phone {
+              width: 100%;
+            }
+          }
+          .discover-jobs {
+            display: inline-block;
+            font-size: 1.2rem;
+            padding: 0.6em 1.2em;
+            margin-top: 1em;
+            background-color: $delGreen;
+            border: 2px solid $delGreen;
+            transition: all 0.3s ease;
+            &:hover {
+              background: none;
+            }
+          }
+        }
+
+        .intro-section-anchor {
+          box-shadow: inset 6px 0px 16px 0px rgba(0, 0, 0, 0.75);
+          position: relative;
+          flex: 1;
+          display: flex;
+          flex-flow: column nowrap;
+          justify-content: center;
+
+          background-color: $darkGrey;
+          padding: 3em;
+
+          //   clip-path: polygon(100% 0, 100% 90%, 50% 90%, 0 90%, 0 0, 50% 0%);
+          clip-path: polygon(100% 0, 100% 90%, 50% 100%, 0 90%, 0 0, 50% 10%);
+
+          transition: all 0.3s ease;
+          cursor: pointer;
+
+          @include phone {
+            display: none;
+          }
+          .why-join {
+            font-size: 2rem;
+            position: relative;
+          }
+          .arrow {
+            margin-top: 50px;
+            animation: arrow-big-move 3.5s infinite 0s ease-in-out;
+            position: relative;
+            width: 25px;
+            height: 25px;
+            border-right: 4px solid white;
+            border-bottom: 4px solid white;
+            transform: scale(0.6) rotate(-45deg) translate(-20px, 25px);
+            &::before {
+              content: "";
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              width: 40px;
+              height: 5px;
+              background-color: white;
+              transform-origin: bottom right;
+              transform: rotate(45deg) translateY(3px);
+            }
+          }
+        }
+      }
+    }
+
+    //INFOGRAPHIC
+    .infographic-container {
+      //   display: none !important;
+      margin: 100px auto;
+      margin-top: 80px;
+      display: grid;
+      //   grid-template: repeat(3, #{"max(#{533px}, #{46vh})"}) / repeat(2, 533px);
+      grid-template: 480px 480px 550px / repeat(2, 534px);
+      grid-gap: 32px;
+      @include tablet {
+        padding: 1vw;
+        // grid-template: repeat(3, #{"clamp(#{30vh}, #{auto},#{46vh})"}) / repeat(2, 48vw);
+        grid-template: repeat(3, 48vw) / repeat(2, 48vw);
+        justify-content: center;
+        grid-gap: 2vw;
+      }
+
+      @include tablet2 {
+        margin-top: 50px;
+
+        grid-template: repeat(5, auto) / repeat(1, 99vw);
+      }
+
+      .infographic-box {
+        // background-color: $delGreen;
+        position: relative;
+        padding: 4em;
+
+        color: white;
+        z-index: 1;
+        @include tablet {
+          padding: 2em;
+        }
+        // clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+
+        &:after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background-color: $delGreen;
+          opacity: 1;
+          z-index: -1;
+        }
+        &:before {
+          content: "";
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position-x: right;
+          position: absolute;
+          z-index: -2;
+          // filter: grayscale(100%);
+        }
+
+        h2 {
+          font-weight: 300;
+          font-size: 2.8rem;
+          margin-bottom: 0.6em;
+          line-height: 1.2;
+          z-index: 99;
+          @include phone {
+            font-size: 2rem;
+          }
+        }
+        p {
+          width: 80%;
+          font-size: 1rem;
+          z-index: 99;
+          &:not(:first-child) {
+            margin-top: 1em;
+          }
+          @include tablet2 {
+            width: 100%;
+          }
+        }
+
+        .svg-icon {
+          position: absolute;
+          opacity: 0.6;
+          z-index: 99;
+          @include tablet2 {
+            opacity: 0.3;
+            width: 50px;
+            top: 1em;
+            right: 1em;
+            left: auto;
+            bottom: auto;
+            display: none;
+          }
+        }
+        &:not(.career) {
+          .svg-icon {
+            right: 2em;
+            bottom: 2em;
+            width: 100px;
+            @include tablet2 {
+              //   display: none;
+            }
+          }
+        }
+        &.career {
+          grid-row-start: 1;
+          grid-row-end: 3;
+          .svg-icon {
+            left: 4em;
+            bottom: 2em;
+            width: 150px;
+            @include tablet2 {
+              left: auto;
+              right: 2em;
+              width: 100px;
+            }
+          }
+          h2 {
+            margin-bottom: 2.2rem;
+          }
+          &:after {
+            background: rgb(4, 106, 56);
+            background: linear-gradient(160deg, #046a38 61%, rgba(4, 106, 56, 0) 100%);
+          }
+          &:before {
+            background-image: url("https://www2.deloitte.com/content/dam/html/ro/radc-recruit-2021/img/career_img.png");
+            background-position-x: center;
+            background-position-y: bottom;
+            background-size: 141% 47%;
+            @include tablet2 {
+              background-size: cover;
+            }
+          }
+        }
+        &.attention {
+          &:before {
+            background-image: url("https://www2.deloitte.com/content/dam/html/ro/radc-recruit-2021/img/attention_img.png");
+            background-position-x: center;
+            background-position-y: 100px;
+            background-size: cover;
+            @include tablet2 {
+              background-position-y: center;
+              background-size: 120%;
+            }
+          }
+          &:after {
+            background: rgb(4, 106, 56);
+            background: linear-gradient(170deg, #046a38 45%, rgba(4, 106, 56, 0) 100%);
+          }
+        }
+        &.growth {
+          &:before {
+            background-image: url("https://www2.deloitte.com/content/dam/html/ro/radc-recruit-2021/img/growth_img.png");
+            background-size: 150%;
+            background-position-x: center;
+            background-position-y: 43%;
+          }
+          &:after {
+            background: rgb(134, 188, 37);
+            background: linear-gradient(143deg, #86bc25 40%, rgba(134, 188, 37, 0) 100%);
+          }
+        }
+        &.multi {
+          &:before {
+            background-image: url("https://www2.deloitte.com/content/dam/html/ro/radc-recruit-2021/img/multicultural_img.png");
+            background-position-x: left;
+            background-position-y: bottom;
+            background-size: cover;
+          }
+          &:after {
+            background: rgb(4, 106, 56);
+            background: linear-gradient(138deg, #046a38 41%, rgba(4, 106, 56, 0.4) 100%);
+          }
+        }
+        &.recognition {
+          &:before {
+            background-image: url("https://www2.deloitte.com/content/dam/html/ro/radc-recruit-2021/img/professional_img.png");
+            background-position-x: 20%;
+            background-position-y: bottom;
+            background-size: cover;
+          }
+          &:after {
+            background: rgb(134, 188, 37);
+            background: linear-gradient(147deg, #86bc25 50%, rgba(134, 188, 37, 0) 100%);
+          }
+        }
+      }
+    }
+
+    //JOB DESCRIPTION
+    .job-description-wrapper {
+      //   display: none !important;
+      margin-top: 10vh;
+      position: relative;
+      background-color: black;
+      border: 3px solid $delGreen;
+      color: white;
+      padding: 4em;
+      padding-top: 4.5em;
+      @include phone {
+        padding: 4em 1em;
+        padding-bottom: 1em;
+        margin-left: 1em;
+        margin-right: 1em;
+      }
+      #job-description {
+        position: absolute;
+        display: block;
+        left: 4em;
+        top: -3em;
+        width: 250px;
+        height: auto;
+        @include phone {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+      .job-description-content {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        @include phone {
+          flex-flow: column nowrap;
+          justify-content: flex-start;
+        }
+        .job-description-paragraph {
+          font-size: 1rem;
+          line-height: 1.5;
+          font-weight: normal;
+          flex: 1;
+          // margin-bottom: 2em;
+          @include phone {
+            margin-bottom: 1rem;
+          }
+          p,
+          ul {
+            margin-bottom: 10px;
+            padding: 0;
+            font-size: 1rem;
+            &:last-child {
+              margin: 0;
+            }
+          }
+          ul {
+            // padding-left: 2em;
+            li {
+              display: flex;
+              flex-flow: row nowrap;
+              justify-content: flex-start;
+              align-items: center;
+              background-color: $darkGrey;
+              margin-bottom: 0.5em;
+              padding: 1em;
+              .bullet-img {
+                width: 1em;
+                padding-right: 1em;
+                box-sizing: content-box;
+              }
+            }
+          }
+          &:nth-child(2) {
+            margin-left: 5em;
+            @include phone {
+              margin-left: auto;
+              margin-bottom: auto;
+            }
+          }
+        }
+      }
+    }
+
+    //JOB CTA SECTION
+    .job-cta-wrapper {
+      //   display: none !important;
+      display: flex;
+      flex-flow: column nowrap;
+      width: 100%;
+      position: relative;
+      margin-top: 4em;
+      .jobs-intro-text {
+        background-color: $darkGrey;
+        position: relative;
+        color: #989a9d;
+        text-align: left;
+        font-weight: 300;
+        font-size: 1rem;
+        line-height: 1.3;
+
+        padding: 3em;
+        padding-right: 12em;
+        .h2-text {
+          font-size: 2.3rem;
+          margin-bottom: 0.8em;
+          display: block;
+          color: white;
+          @include phone {
+          }
+        }
+        @include phone {
+          padding: 2em;
+        }
+      }
+      .job {
+        flex: 1;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 2em 4em;
+        background-color: $delGreen;
+        color: white;
+
+        transition: all 0.3s ease;
+        &:not(:first-child) {
+          margin: 3px 0;
+          margin-top: 0 !important;
+        }
+        &:first-child {
+          margin-bottom: 3px;
+        }
+        @include phone {
+          flex-flow: column nowrap;
+          justify-content: center;
+          align-items: center;
+          padding: 2em;
+        }
+        &:hover {
+          background-color: $darkGreen;
+        }
+
+        .job-title {
+          font-weight: normal;
+          font-size: 1.5rem;
+          @include tablet {
+            margin-right: 1em;
+          }
+          @include phone {
+            margin-right: 0;
+          }
+        }
+        .job-link {
+          display: inline-block;
+          font-size: 1.2rem;
+          padding: 0.6em 1.2em;
+          background: none;
+          border: 2px solid white;
+          transition: all 0.3s ease;
+          width: 30%;
+          text-align: center;
+          font-weight: bold;
+          box-sizing: content-box;
+          @include phone {
+            margin-top: 1.5em;
+            width: 70%;
+          }
+          &:hover {
+            background-color: white;
+            color: $delGreen;
+          }
+        }
+
+        &.desktop-link {
+          @include phone {
+            display: none;
+          }
+        }
+        &.mobile-link {
+          display: none;
+          @include phone {
+            display: flex;
+          }
+        }
+      }
+    }
+
+    //FOLLOW US SECTION
+    .follow-us-section {
+      //   display: none !important;
+      margin: 5rem 0;
+      margin-bottom: 1rem;
+      .social-title {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+      }
+      .social-icons-wrapper {
+        text-align: center;
+        .social-link-icon {
+          margin: 0 6px;
+          img {
+            max-width: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include arrow-keyframes;
