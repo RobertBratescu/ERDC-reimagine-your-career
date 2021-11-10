@@ -124,9 +124,10 @@ allSections.forEach(function (section) {
 
 let visibleSections = 0;
 const checkSectionInView = setInterval(function () {
+  console.log("is running");
+
   allSections.forEach(function (sec) {
     const getSecTop = sec.getBoundingClientRect().top;
-    console.log("is running");
     // const getSecBottom = sec.getBoundingClientRect().bottom;
     if (getSecTop < window.innerHeight) sec.classList.remove('section--hidden');
 
@@ -136,4 +137,4 @@ const checkSectionInView = setInterval(function () {
   });
 }, 2000);
 
-checkSectionInView()
+// checkSectionInView()
