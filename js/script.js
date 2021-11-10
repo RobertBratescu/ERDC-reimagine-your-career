@@ -122,10 +122,17 @@ allSections.forEach(function (section) {
   if (!section.classList.contains('section-1') && !section.classList.contains('section-6')) section.classList.add('section--hidden');
 });
 
-setTimeout(function () {
+let visibleSections = 0;
+const checkSectionInView = setInterval(function () {
   allSections.forEach(function (sec) {
     const getSecTop = sec.getBoundingClientRect().top;
     // const getSecBottom = sec.getBoundingClientRect().bottom;
     if (getSecTop < window.innerHeight) sec.classList.remove('section--hidden');
+
+    if(!sec.classList.contains('section--hidden')) visibleSections++;
+
+    if(visibleSections === allSections.length) clearInterval(checkSectionInView);
   });
 }, 2000);
+
+checkSectionInView()
