@@ -126,6 +126,7 @@ let visibleSections = 0;
 const checkSectionInView = setInterval(function () {
   allSections.forEach(function (sec) {
     const getSecTop = sec.getBoundingClientRect().top;
+    console.log("is running");
     // const getSecBottom = sec.getBoundingClientRect().bottom;
     if (getSecTop < window.innerHeight) sec.classList.remove('section--hidden');
 
