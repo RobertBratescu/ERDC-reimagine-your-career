@@ -78,7 +78,6 @@ scbootElement.querySelector('.job-icon').setAttribute('fill', delLightGreen);
 
 //Hover effect on apply buttons
 const btnsApply = document.querySelectorAll('.btn__apply');
-
 btnsApply.forEach(function (btn) {
   btn.addEventListener('mouseenter', function (e) {
     const getParentBGColor = window.getComputedStyle(this.closest('.section-4__job')).getPropertyValue('background-color');
@@ -105,7 +104,6 @@ bigArrow.addEventListener('click', function () {
 //reveal sections
 const revealSection = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
   if (!entry.isIntersecting) return;
   entry.target.classList.remove('section--hidden');
   observer.unobserve(entry.target);
@@ -124,8 +122,6 @@ allSections.forEach(function (section) {
 
 let visibleSections = 0;
 const checkSectionInView = setInterval(function () {
-  console.log("is running");
-
   allSections.forEach(function (sec) {
     const getSecTop = sec.getBoundingClientRect().top;
     // const getSecBottom = sec.getBoundingClientRect().bottom;
@@ -137,4 +133,19 @@ const checkSectionInView = setInterval(function () {
   });
 }, 2000);
 
-// checkSectionInView()
+//Lazy loading images
+const imgTargets = document.querySelectorAll('img[data-src]')
+const loadImg = function(entries,observer){
+const [entry] = entries;
+if(!entry.isIntersecting) return;
+entry.target.addEventListener('load',function(){
+  entry.target.classList.remove('lazy-img')
+})
+
+observer.unobserve(entry.target)
+}
+const imgObserver = new IntersectionObserver(loadImg,{
+  root:null,
+  threshold:0
+})
+imgTargets.forEach((img)=>imgObserver.observe(img))
