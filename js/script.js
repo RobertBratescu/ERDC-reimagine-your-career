@@ -122,10 +122,10 @@ allSections.forEach(function (section) {
   if (!section.classList.contains('section-1') && !section.classList.contains('section-6')) section.classList.add('section--hidden');
 });
 
-// setTimeout(function () {
-//   allSections.forEach(function (sec) {
-//     const getSecTop = sec.getBoundingClientRect().top;
-//     const getSecBottom = sec.getBoundingClientRect().bottom;
-//     if (getSecTop <= 0 && getSecBottom >= 0) sec.classList.remove('section--hidden');
-//   });
-// }, 2000);
+setTimeout(function () {
+  allSections.forEach(function (sec) {
+    const getSecTop = sec.getBoundingClientRect().top;
+    // const getSecBottom = sec.getBoundingClientRect().bottom;
+    if (getSecTop < window.innerHeight) sec.classList.remove('section--hidden');
+  });
+}, 2000);
