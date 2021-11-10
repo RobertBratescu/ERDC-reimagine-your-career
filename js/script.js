@@ -127,17 +127,24 @@ const checkSectionInView = setInterval(function () {
     // const getSecBottom = sec.getBoundingClientRect().bottom;
     if (getSecTop < window.innerHeight) sec.classList.remove('section--hidden');
 
-    if(!sec.classList.contains('section--hidden')) visibleSections++;
+    if (!sec.classList.contains('section--hidden')) visibleSections++;
 
-    if(visibleSections === allSections.length) clearInterval(checkSectionInView);
+    if (visibleSections === allSections.length) clearInterval(checkSectionInView);
   });
 }, 2000);
 
 //Lazy loading images
-const imgTargets = document.querySelectorAll('img[data-src]')
-imgTargets.forEach(function(i){
-  i.addEventListener('load', function(){
-    this.classList.remove('lazy-img')
+const imgTargets = document.querySelectorAll('img[data-src]');
+
+window.addEventListener('load', function (e) {
+  imgTargets.forEach(function (i) {
+    i.classList.remove('lazy-img');
   });
-  console.log('worked?')
-})
+  console.log('loaded');
+});
+
+// imgTargets.forEach(function (im) {
+//   im.addEventListener('load', function () {
+//     im.classList.remove('lazy-img');
+//   });
+// });
