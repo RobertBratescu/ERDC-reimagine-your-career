@@ -137,7 +137,7 @@ const checkSectionInView = setInterval(function () {
 const imgTargets = document.querySelectorAll('img[data-src]')
 imgTargets.forEach(function(i){
   i.addEventListener('load', function(){
-    this.classList.remove('lazy-img')
+    setTimeout(this.classList.remove('lazy-img'),1000)
   })
 
 })
