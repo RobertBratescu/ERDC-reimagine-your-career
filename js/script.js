@@ -137,8 +137,10 @@ const checkSectionInView = setInterval(function () {
 const imgTargets = document.querySelectorAll('img[data-src]')
 const loadImg = function(entries,observer){
 const [entry] = entries;
+
 if(!entry.isIntersecting) return;
-entry.target.addEventListener('load',function(){
+entry.target.src = entry.target.dataset.src;
+entry.target.addEventListener('load', function(){
   entry.target.classList.remove('lazy-img')
 })
 
