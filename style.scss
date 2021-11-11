@@ -20,6 +20,7 @@ body {
 html {
   scroll-behavior: smooth;
   font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
   @include phone {
     font-size: 16px;
   }
@@ -84,6 +85,7 @@ a {
     transform: translateY(5rem);
   }
 }
+
 /* NOTE HEADER */
 .e-header {
   margin-top: 50px; /* NOTE Remove before publishing */
@@ -175,6 +177,8 @@ a {
       padding: 20px 30px 0 0;
       background-color: black;
       border: none;
+
+      animation: hovering-img 5s infinite 0s ease-in-out;
       & img {
         width: 98%;
       }
@@ -225,9 +229,22 @@ a {
     align-items: center;
 
     background-color: $delGreen2;
-    clip-path: polygon(0 0, 50% 7%, 100% 0, 100% 93%, 50% 100%, 0 93%);
 
     padding: 3.8rem;
+    padding-bottom: calc(8% + 3.8rem);
+
+    // clip-path: polygon(0 0, 100% 0, 100% 93%, 0 93%);
+    clip-path: polygon(0 0, 50% 7%, 100% 0, 100% 93%, 50% 100%, 0 93%);
+    // clip-path: circle(25%);
+    transition: box-shadow 0.8s ease, animation 0.8s ease; //BUG: not doing a transition
+    &:hover {
+      // clip-path: circle(75%);
+      box-shadow: inset 14px 20px 20px 0px rgba(0, 0, 0, 0.4), inset -14px 20px 20px 0px rgba(0, 0, 0, 0.4);
+      // animation: hovering-arrow 1s infinite 0s ease-in-out;
+
+      // clip-path: polygon(0 0, 50% 7%, 100% 0, 100% 93%, 50% 100%, 0 93%);
+    }
+
     & p {
       text-align: left;
       font-size: 2rem;
@@ -267,7 +284,17 @@ a {
     font-weight: 300;
     width: 50%;
   }
+  & #cupola {
+    position: absolute;
+    top: -4rem;
+    left: 0;
+    width: 23rem;
+    z-index: -1;
+    opacity: 0.5;
+  }
   & .boot-container {
+    // position: relative;
+
     background-color: $darkGrey;
     padding: 3.6rem;
     padding-bottom: 4rem;
@@ -280,6 +307,7 @@ a {
       'C . D'
       'E . G'
       'F . G';
+
     & .boot-container__element:nth-child(1) {
       grid-area: A;
       flex-flow: row nowrap;
@@ -330,7 +358,7 @@ a {
 
       flex-flow: row nowrap;
       justify-content: flex-start;
-      align-items: center;
+      align-items: flex-end;
 
       margin: 3rem 0;
       margin-top: 5rem;
@@ -338,12 +366,12 @@ a {
         font-size: 2rem;
         font-weight: bold;
         color: $delTurquoise;
-        padding-left: 0.8rem;
+        padding-left: 1rem;
         line-height: 1.1;
       }
-      & .job-icon {
+      & .bootcamp-icon {
         min-width: 30px;
-        width: 15%;
+        width: 22%;
       }
     }
     & .boot-container__element:nth-child(4) {
@@ -414,6 +442,22 @@ a {
       color: white;
     }
     & p {
+      //Job description button
+      cursor: pointer;
+      transition: padding 0.5s ease, background-color 0.5s ease;
+      &.description--active {
+        background-color: white;
+        color: black;
+        padding-left: 1rem;
+        & .arrow {
+          border-right: 3px solid black;
+          border-bottom: 3px solid black;
+
+          &:before {
+            background-color: black;
+          }
+        }
+      }
       align-self: stretch;
 
       margin-top: auto;
@@ -455,15 +499,15 @@ a {
       font-weight: bold;
 
       background-color: black;
-      border: 3px solid black;
+      // border: 3px solid black;
       transition: color 0.2s ease, background-color 0.2s ease;
       &.btn--active {
         color: black;
+        background-color: white;
       }
     }
     & .job-icon {
-      min-width: 36px;
-      width: 20%;
+      max-height: 70px;
     }
   }
 }
@@ -510,5 +554,180 @@ a {
       display: block;
       margin: 0 auto;
     }
+  }
+}
+#pop-up-overlay,
+#job-description-wrapper {
+  box-sizing: border-box;
+}
+
+#pop-up-overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: black;
+  opacity: 0.8;
+  display: none;
+  &.visible {
+    display: block;
+  }
+}
+
+#job-description-wrapper {
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  // overflow-y: auto;
+
+  height: 80%;
+  width: 60%;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  z-index: 999;
+
+  background: $delLightGreen;
+  display: none;
+
+  & #close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 3.5rem;
+    cursor: pointer;
+  }
+  &.visible {
+    display: flex;
+  }
+  & .job-icon {
+    max-width: 1rem;
+  }
+
+  & .job-container {
+    position: relative;
+    height: 75%;
+    width: 80%;
+    display: none;
+    margin-top: 4rem;
+    padding-right: 3rem;
+
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 0.8rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: $delLightGreen;
+      border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 20px;
+      background-color: #167053;
+      // outline: 1px solid slategrey;
+    }
+
+    &.visible {
+      display: block;
+    }
+    & .job-icon {
+      padding-right: 1rem;
+    }
+    &__title {
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: center;
+
+      color: white;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+
+      font-weight: 700;
+      margin-top: 0;
+    }
+    & h5 {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      margin: 2rem 0;
+    }
+    & p:not(:last-child) {
+      margin-bottom: 0.8rem;
+    }
+    & p {
+      font-size: 1rem;
+    }
+    & ul {
+      padding-left: 1rem;
+    }
+
+    & li {
+      list-style-type: disc;
+      line-height: 1.5;
+    }
+    &__background {
+      display: none;
+      & h5 {
+        margin-top: 3rem;
+      }
+    }
+    &__responsibilities.grid {
+      margin-bottom: 3rem;
+      grid-template-rows: repeat(3, auto);
+      grid-template-columns: 1fr 1fr;
+      & h5,
+      p {
+        grid-column: span 2;
+      }
+      & resp__left {
+        grid-column: 1/2;
+      }
+      & resp__right {
+        grid-column: 2/3;
+      }
+    }
+    &__responsibilities {
+      & h5 {
+        margin-top: 0;
+      }
+      & .resp__left {
+        padding-right: 3rem;
+      }
+      & h6 {
+        font-size: 1rem;
+        margin: 1rem 0;
+      }
+    }
+    &__requirements {
+      // padding-bottom: 3rem;
+    }
+  }
+}
+@keyframes hovering-img {
+  0% {
+    transform: translateY(2rem);
+  }
+  50% {
+    transform: translateY(1.5rem);
+  }
+  100% {
+    transform: translateY(2rem);
+  }
+}
+@keyframes hovering-arrow {
+  0% {
+    transform: translateY(0rem);
+  }
+  50% {
+    transform: translateY(1.5rem);
+  }
+  100% {
+    transform: translateY(0rem);
   }
 }
