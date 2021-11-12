@@ -73,13 +73,15 @@ a {
   margin: 0 auto;
   font-family: 'Open Sans', sans-serif;
   box-sizing: border-box;
+  @include tablet {
+    padding: 0 2rem;
+  }
 }
 
 .e-section {
   opacity: 1;
   transform: translateY(0rem);
   transition: opacity 0.7s ease, transform 0.7s ease;
-
   &.section--hidden {
     opacity: 0;
     transform: translateY(5rem);
@@ -92,19 +94,38 @@ a {
 
   grid-template: minmax(200px, auto) / 4fr 5fr;
   grid-gap: 1px;
-
+  @include tablet2 {
+    grid-template-columns: 1fr;
+  }
   margin-bottom: 50px;
   &__left {
     flex-flow: column nowrap;
     justify-content: center;
+    @include tablet2 {
+      justify-content: flex-start;
+    }
+
     & h1 {
       font-size: 2.8rem;
       line-height: 1.2;
       margin: 100px 0 40px 0;
+      @include tablet2 {
+        text-align: center;
+        margin: 1rem 0;
+        & .block {
+          display: inline;
+        }
+      }
     }
     & h2 {
       font-size: 1.8rem;
       line-height: 1.5;
+      @include tablet2 {
+        text-align: center;
+        & .block:nth-child(1) {
+          display: inline;
+        }
+      }
       & .light {
         font-size: 1.3rem;
         color: $lightGrey;
@@ -124,6 +145,9 @@ a {
           width: 7%;
           height: 5px;
           background-color: $lightGrey;
+          @include tablet2 {
+            display: none;
+          }
         }
       }
     }
@@ -132,6 +156,14 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    @include tablet2 {
+      order: -1;
+    }
+    & .hero-img {
+      @include phone {
+        width: 95%;
+      }
+    }
 
     padding: 20px 0;
   }
@@ -141,6 +173,10 @@ a {
   // grid-template: repeat(9, 100px) / 3fr 4fr;
   grid-auto-rows: auto;
   grid-template-columns: 6fr 8fr;
+  @include tablet2 {
+    grid-template-columns: 1fr;
+    margin-bottom: 40px;
+  }
 
   margin-bottom: 100px;
 
@@ -151,6 +187,9 @@ a {
     font-size: 2.4rem;
     padding: 20px 10px;
     border: none;
+    @include tablet2 {
+      margin: 2rem 0;
+    }
   }
   & .section-1__element {
     grid-column: 2;
@@ -169,6 +208,9 @@ a {
     &.img-element {
       grid-row: span 9;
       grid-column: 1/2;
+      @include tablet2 {
+        display: none;
+      }
 
       flex-flow: column nowrap;
       justify-content: flex-start;
@@ -197,6 +239,9 @@ a {
 .section-2 {
   grid-auto-rows: auto;
   grid-template-columns: 10fr 6fr;
+  @include tablet2 {
+    grid-template-columns: 1fr;
+  }
 
   margin-bottom: 50px;
   & div.section-2__left {
@@ -214,6 +259,9 @@ a {
       margin-bottom: 1.5rem;
 
       font-size: 1.5rem;
+      @include tablet2 {
+        font-size: 1.7rem;
+      }
     }
     & p:not(.section-2__title) {
       color: white;
@@ -221,12 +269,26 @@ a {
 
       line-height: 1.5;
       font-size: 0.85rem;
+      @include tablet2 {
+        font-size: 1rem;
+      }
     }
   }
   & div.section-2__right {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    @include tablet2 {
+      clip-path: none;
+      display: inline-block;
+      width: 50vw;
+      margin: 0 auto;
+      height: auto;
+      padding: 1rem 2rem;
+      &:hover {
+        box-shadow: none;
+      }
+    }
 
     background-color: $delGreen2;
 
@@ -239,7 +301,9 @@ a {
     transition: box-shadow 0.8s ease, animation 0.8s ease; //BUG: not doing a transition
     &:hover {
       // clip-path: circle(75%);
-      box-shadow: inset 14px 20px 20px 0px rgba(0, 0, 0, 0.4), inset -14px 20px 20px 0px rgba(0, 0, 0, 0.4);
+      @include media('>1150px') {
+        box-shadow: inset 14px 20px 20px 0px rgba(0, 0, 0, 0.4), inset -14px 20px 20px 0px rgba(0, 0, 0, 0.4);
+      }
       // animation: hovering-arrow 1s infinite 0s ease-in-out;
 
       // clip-path: polygon(0 0, 50% 7%, 100% 0, 100% 93%, 50% 100%, 0 93%);
@@ -249,6 +313,9 @@ a {
       text-align: left;
       font-size: 2rem;
       color: white;
+      @include tablet2 {
+        text-align: center;
+      }
     }
     &:hover {
       cursor: pointer;
@@ -264,12 +331,22 @@ a {
   color: white;
 
   position: relative;
+  @include tablet2 {
+    margin: 2rem;
+    background-color: $darkGrey;
+    padding-top: 2rem;
+  }
   & > h3 {
     font-size: 5.5rem;
     line-height: 1;
     padding-left: 3.6rem;
 
     transform: translateY(4.2rem);
+    @include tablet2 {
+      transform: translateY(0);
+      font-size: 4rem;
+      padding: 0;
+    }
     & .block {
       font-size: 0.7em;
     }
@@ -283,6 +360,18 @@ a {
     font-size: 2.5rem;
     font-weight: 300;
     width: 50%;
+    @include tablet2 {
+      position: relative;
+      top: auto;
+      right: auto;
+      width: auto;
+      margin: 2rem 0;
+      padding: 0;
+      font-size: 1.6rem;
+      & .nowrap {
+        white-space: normal;
+      }
+    }
   }
   & #cupola {
     position: absolute;
@@ -291,10 +380,26 @@ a {
     width: 23rem;
     z-index: -1;
     opacity: 0.5;
+    @include tablet {
+      display: none;
+    }
   }
   & .boot-container {
     // position: relative;
-
+    @include tablet2 {
+      padding: 2rem 0;
+      padding-top: 0;
+      grid-template-rows: auto;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'A'
+        'B'
+        'C'
+        'E'
+        'F'
+        'D'
+        'G';
+    }
     background-color: $darkGrey;
     padding: 3.6rem;
     padding-bottom: 4rem;
@@ -310,6 +415,12 @@ a {
 
     & .boot-container__element:nth-child(1) {
       grid-area: A;
+      @include tablet2 {
+        display: inline-block;
+        width: auto;
+        padding-bottom: 1rem;
+      }
+
       flex-flow: row nowrap;
       justify-content: flex-start;
       align-items: flex-start;
@@ -325,6 +436,9 @@ a {
         height: 7px;
         bottom: 1px;
         right: 0;
+        @include tablet2 {
+          display: none;
+        }
       }
       &:before {
         content: '';
@@ -334,6 +448,11 @@ a {
         height: 2px;
         bottom: 3px;
         right: 0;
+        @include tablet2 {
+          width: 50%;
+          left: 0;
+          right: auto;
+        }
       }
       & p {
         font-size: 1.4rem;
@@ -342,11 +461,16 @@ a {
     }
     & .boot-container__element:nth-child(2) {
       grid-area: B;
-
-      // padding-left: 1rem;
+      @include tablet2 {
+        margin-top: 2rem;
+      }
       & p {
         font-size: 1rem;
         font-weight: 300;
+        @include tablet2 {
+          font-size: 1.2rem;
+        }
+
         &:nth-child(1) {
           margin-bottom: 1rem;
         }
@@ -370,12 +494,16 @@ a {
         line-height: 1.1;
       }
       & .bootcamp-icon {
-        min-width: 30px;
+        min-width: 4rem;
         width: 22%;
+        @include tablet2 {
+          width: 10%;
+        }
       }
     }
     & .boot-container__element:nth-child(4) {
       grid-area: D;
+
       & p {
         color: $delLightGreen;
       }
@@ -391,16 +519,26 @@ a {
         font-size: 1.8rem;
         background-color: $delTurquoise;
         margin: 0;
+        @include tablet2 {
+          // font-size: 2rem;
+        }
       }
       & h5 {
         font-size: 1.2rem;
         margin: 1rem 0;
         color: $lightGrey3;
+        @include tablet2 {
+          font-size: 1.5rem;
+        }
       }
       & p {
         font-weight: 300;
         font-size: 0.9rem;
         color: $lightGrey2;
+        @include tablet2 {
+          font-size: 1.1rem;
+          max-width: 90%;
+        }
       }
     }
     & .boot-container__element:nth-child(6) {
@@ -409,6 +547,7 @@ a {
     }
     & .boot-container__element:nth-child(7) {
       grid-area: G;
+
       & h4 {
         background-color: $delLightGreen;
       }
@@ -422,7 +561,12 @@ a {
   grid-template-rows: repeat(auto-fill, 400px);
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1.5rem;
-
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include phone {
+    grid-template-columns: 1fr;
+  }
   margin-bottom: 50px;
   & .section-4__job {
     flex-flow: column nowrap;
@@ -438,11 +582,17 @@ a {
     & h4 {
       margin: 0.5rem 0 1.5rem 0;
       font-size: 1.3rem;
-
+      @include phone {
+        font-size: 2rem;
+      }
       color: white;
     }
     & p {
       //Job description button
+      @include phone {
+        font-size: 1.5rem;
+        align-self: flex-start;
+      }
       cursor: pointer;
       transition: padding 0.5s ease, background-color 0.5s ease;
       &.description--active {
@@ -490,6 +640,10 @@ a {
       }
     }
     & .btn__apply {
+      @include phone {
+        font-size: 1.5rem;
+        align-self: flex-end;
+      }
       display: inline-block;
       margin: 30px 0 10px 0;
       padding: 10px 30px;
@@ -517,6 +671,9 @@ a {
   color: white;
   background-color: $darkGrey;
   padding: 3rem;
+  @include tablet {
+    margin: 0 2rem;
+  }
   & h3 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
@@ -533,6 +690,11 @@ a {
     margin-top: 2rem;
     & img {
       margin-right: 1rem;
+      @include tablet2 {
+        width: 18%;
+        margin-right: 1%;
+        display: block;
+      }
     }
   }
 }
@@ -577,10 +739,16 @@ a {
 }
 
 #job-description-wrapper {
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-
+  @include media('<1500px') {
+    width: 80vw;
+  }
+  @include tablet {
+    width: 90vw;
+    height: 90vh;
+  }
   position: fixed;
   // overflow-y: auto;
 
@@ -611,10 +779,10 @@ a {
 
   & .job-container {
     position: relative;
-    height: 75%;
+    height: 69%;
     width: 80%;
     display: none;
-    margin-top: 4rem;
+    margin-top: 6rem;
     padding-right: 3rem;
 
     overflow-y: scroll;
@@ -672,7 +840,7 @@ a {
       line-height: 1.5;
     }
     &__background {
-      display: none;
+      // display: none;
       & h5 {
         margin-top: 3rem;
       }
@@ -706,6 +874,28 @@ a {
     }
     &__requirements {
       // padding-bottom: 3rem;
+    }
+  }
+
+  & .description-wrapper__btn {
+    display: none;
+
+    color: black;
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    border: 3px solid white;
+    margin: 2rem auto;
+    padding: 0.5rem 2rem;
+
+    cursor: pointer;
+    transition: border-color 0.5s ease;
+    background-color: white;
+    &.visible {
+      display: inline-block;
+    }
+    &:hover {
+      border-color: black;
     }
   }
 }

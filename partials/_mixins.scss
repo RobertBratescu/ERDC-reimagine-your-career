@@ -11,7 +11,7 @@ $delLightGreen: #a2b721;
 $darkGreen: #6e7d16;
 $delTurquoise: #29a580;
 $delBlue: #00a3e0;
-$darkGrey: #181818;
+$darkGrey: #1b1b1b;
 $lightGrey: #c3c3c3;
 $lightGrey2: #959595;
 $lightGrey3: #d2d2d2;
@@ -27,8 +27,8 @@ $pFontLarge: #{'min(max(#{18px}, #{2vw}), #{20px})'};
 
 // MEDIA QUERIES
 $phone: '<del-phone';
-$tablet2: '<del-tablet';
 $tablet: '<tablet-landscape';
+$tablet2: '<del-tablet';
 
 @mixin phone {
   @include media($phone) {
