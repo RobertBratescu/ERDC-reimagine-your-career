@@ -94,14 +94,14 @@ a {
 
   grid-template: minmax(200px, auto) / 4fr 5fr;
   grid-gap: 1px;
-  @include tablet2 {
+  @include tablet {
     grid-template-columns: 1fr;
   }
   margin-bottom: 50px;
   &__left {
     flex-flow: column nowrap;
     justify-content: center;
-    @include tablet2 {
+    @include tablet {
       justify-content: flex-start;
     }
 
@@ -109,7 +109,7 @@ a {
       font-size: 2.8rem;
       line-height: 1.2;
       margin: 100px 0 40px 0;
-      @include tablet2 {
+      @include tablet {
         text-align: center;
         margin: 1rem 0;
         & .block {
@@ -120,7 +120,7 @@ a {
     & h2 {
       font-size: 1.8rem;
       line-height: 1.5;
-      @include tablet2 {
+      @include tablet {
         text-align: center;
         & .block:nth-child(1) {
           display: inline;
@@ -145,7 +145,7 @@ a {
           width: 7%;
           height: 5px;
           background-color: $lightGrey;
-          @include tablet2 {
+          @include tablet {
             display: none;
           }
         }
@@ -156,7 +156,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    @include tablet2 {
+    @include tablet {
       order: -1;
     }
     & .hero-img {
