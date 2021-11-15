@@ -122,7 +122,7 @@ const checkSectionInView = setInterval(function () {
 }, 2000);
 
 //Lazy loading images
-const imgTargets = document.querySelectorAll('img[data-src]');
+const imgTargets = document.querySelectorAll('.lazy-img');
 window.addEventListener('load', function (e) {
   imgTargets.forEach(function (i) {
     i.classList.remove('lazy-img');
