@@ -1224,7 +1224,7 @@ a.nowrap {
 }
 
 #job-description-wrapper .job-container__responsibilities h5 {
-  margin-top: 0;
+  margin-top: 4rem;
 }
 
 #job-description-wrapper .job-container__responsibilities .resp__left {
@@ -1256,6 +1256,7 @@ a.nowrap {
 
 #job-description-wrapper .description-wrapper__btn:hover {
   border-color: black;
+  text-decoration: underline;
 }
 
 @-webkit-keyframes hovering-img {
